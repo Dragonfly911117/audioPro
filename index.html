@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speaker Controller</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Loading...</h1>
+            <div class="status-indicator">
+                <span class="status-dot" id="statusDot"></span>
+                <span id="statusText">Connecting...</span>
+            </div>
+        </header>
+
+        <!-- Now Playing -->
+        <div class="card">
+            <div class="now-playing">
+                <div class="title" id="trackTitle">--</div>
+                <div class="artist" id="trackArtist">--</div>
+                <div class="source" id="currentSource">--</div>
+            </div>
+        </div>
+
+        <!-- Playback Controls -->
+        <div class="card">
+            <div class="card-title">Playback</div>
+            <div class="playback-controls">
+                <button class="control-btn" onclick="sendCommand('prev')" title="Previous">⏮</button>
+                <button class="control-btn" onclick="sendCommand('stop')" title="Stop">⏹</button>
+                <button class="control-btn play-pause" onclick="sendCommand('onepause')" id="playPauseBtn" title="Play/Pause">⏸</button>
+                <button class="control-btn" onclick="sendCommand('next')" title="Next">⏭</button>
+            </div>
+        </div>
+
+        <!-- Volume Controls -->
+        <div class="card">
+            <div class="card-title">Volume</div>
+            <div class="volume-section">
+                <button class="mute-btn" onclick="toggleMute()" id="muteBtn" title="Mute">🔊</button>
+                <div class="volume-slider-container">
+                    <button class="volume-btn" onclick="adjustVolume(-5)">−</button>
+                    <input type="range" class="volume-slider" id="volumeSlider"
+                           min="0" max="100" value="50"
+                           onchange="setVolume(this.value)"
+                           oninput="updateVolumeDisplay(this.value)">
+                    <button class="volume-btn" onclick="adjustVolume(5)">+</button>
+                </div>
+                <span class="volume-value" id="volumeValue">50%</span>
+            </div>
+        </div>
+
+        <!-- Source Selection -->
+        <div class="card">
+            <div class="card-title">Source</div>
+            <div class="source-grid">
+                <button class="source-btn" onclick="setSource('wifi')" data-source="wifi">
+                    <div class="icon">📶</div>
+                    <div class="label">WiFi</div>
+                </button>
+                <button class="source-btn" onclick="setSource('bluetooth')" data-source="bluetooth">
+                    <div class="icon">🔵</div>
+                    <div class="label">Bluetooth</div>
+                </button>
+                <button class="source-btn" onclick="setSource('line-in')" data-source="line-in">
+                    <div class="icon">🔌</div>
+                    <div class="label">Line In</div>
+                </button>
+                <button class="source-btn" onclick="setSource('optical')" data-source="optical">
+                    <div class="icon">💿</div>
+                    <div class="label">Optical</div>
+                </button>
+                <button class="source-btn" onclick="setSource('udisk')" data-source="udisk">
+                    <div class="icon">💾</div>
+                    <div class="label">USB</div>
+                </button>
+                <button class="source-btn" onclick="setSource('PCUSB')" data-source="PCUSB">
+                    <div class="icon">💻</div>
+                    <div class="label">PC USB</div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Presets -->
+        <div class="card">
+            <div class="card-title">Presets</div>
+            <div class="preset-grid">
+                <button class="preset-btn" onclick="playPreset(1)">1</button>
+                <button class="preset-btn" onclick="playPreset(2)">2</button>
+                <button class="preset-btn" onclick="playPreset(3)">3</button>
+                <button class="preset-btn" onclick="playPreset(4)">4</button>
+                <button class="preset-btn" onclick="playPreset(5)">5</button>
+                <button class="preset-btn" onclick="playPreset(6)">6</button>
+                <button class="preset-btn" onclick="playPreset(7)">7</button>
+                <button class="preset-btn" onclick="playPreset(8)">8</button>
+                <button class="preset-btn" onclick="playPreset(9)">9</button>
+                <button class="preset-btn" onclick="playPreset(10)">10</button>
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="card">
+            <div class="card-title">Actions</div>
+            <div class="action-row">
+                <button class="action-btn" onclick="refreshStatus()">🔄 Refresh</button>
+                <button class="action-btn" onclick="rebootDevice()">🔁 Reboot</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script type="module" src="dist/app.js"></script>
+</body>
+</html>
