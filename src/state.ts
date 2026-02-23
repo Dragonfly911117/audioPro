@@ -8,5 +8,6 @@ export const state: AppState = {
     volume: 50,
     muted: false,
     playing: false,
+    eq: '0',
     statusInterval: null
 };

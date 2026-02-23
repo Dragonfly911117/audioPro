@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { CONFIG, API_BASE, MODE_MAP, loadSpeakerConfig } from './config.js';
+import { CONFIG, API_BASE, MODE_MAP, EQ_PRESETS, loadSpeakerConfig } from './config.js';
 
 describe('CONFIG', () => {
     it('should have deviceIp as empty string (loaded from server)', () => {
@@ -69,5 +69,37 @@ describe('MODE_MAP', () => {
     it('should have all expected modes', () => {
         const expectedModes = ['10', '31', '40', '41', '43', '11', '99'];
         expect(Object.keys(MODE_MAP)).toEqual(expect.arrayContaining(expectedModes));
+    });
+});
+
+describe('EQ_PRESETS', () => {
+    it('should have 25 presets', () => {
+        expect(Object.keys(EQ_PRESETS)).toHaveLength(25);
+    });
+
+    it('should map preset 0 to Off', () => {
+        expect(EQ_PRESETS['0']).toBe('Off');
+    });
+
+    it('should map preset 1 to Flat', () => {
+        expect(EQ_PRESETS['1']).toBe('Flat');
+    });
+
+    it('should map preset 11 to Jazz', () => {
+        expect(EQ_PRESETS['11']).toBe('Jazz');
+    });
+
+    it('should map preset 19 to Rock', () => {
+        expect(EQ_PRESETS['19']).toBe('Rock');
+    });
+
+    it('should map preset 24 to Vocal Booster', () => {
+        expect(EQ_PRESETS['24']).toBe('Vocal Booster');
+    });
+
+    it('should have all presets from 0 to 24', () => {
+        for (let i = 0; i <= 24; i++) {
+            expect(EQ_PRESETS[String(i)]).toBeDefined();
+        }
     });
 });

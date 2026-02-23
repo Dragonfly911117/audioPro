@@ -27,6 +27,8 @@ import {
     switchSource,
     triggerPreset,
     reboot,
+    getEqualizer,
+    setEqualizer,
 } from './api.js';
 
 describe('apiCall', () => {
@@ -317,6 +319,72 @@ describe('reboot', () => {
 
         expect(mockFetch).toHaveBeenCalledWith(
             expect.stringContaining('reboot')
+        );
+    });
+});
+
+describe('getEqualizer', () => {
+    beforeEach(() => {
+        mockFetch.mockClear();
+    });
+
+    it('should call getEqualizer command', async () => {
+        mockFetch.mockResolvedValueOnce({
+            ok: true,
+            text: () => Promise.resolve('5'),
+        });
+
+        const result = await getEqualizer();
+
+        expect(mockFetch).toHaveBeenCalledWith(
+            expect.stringContaining('getEqualizer')
+        );
+        // API returns number when response is valid JSON number
+        expect(result).toBe(5);
+    });
+});
+
+describe('setEqualizer', () => {
+    beforeEach(() => {
+        mockFetch.mockClear();
+    });
+
+    it('should set equalizer to Off (0)', async () => {
+        mockFetch.mockResolvedValueOnce({
+            ok: true,
+            text: () => Promise.resolve('OK'),
+        });
+
+        await setEqualizer(0);
+
+        expect(mockFetch).toHaveBeenCalledWith(
+            expect.stringContaining('setPlayerCmd%3Aequalizer%3A0')
+        );
+    });
+
+    it('should set equalizer to Rock (19)', async () => {
+        mockFetch.mockResolvedValueOnce({
+            ok: true,
+            text: () => Promise.resolve('OK'),
+        });
+
+        await setEqualizer(19);
+
+        expect(mockFetch).toHaveBeenCalledWith(
+            expect.stringContaining('setPlayerCmd%3Aequalizer%3A19')
+        );
+    });
+
+    it('should set equalizer to Jazz (11)', async () => {
+        mockFetch.mockResolvedValueOnce({
+            ok: true,
+            text: () => Promise.resolve('OK'),
+        });
+
+        await setEqualizer(11);
+
+        expect(mockFetch).toHaveBeenCalledWith(
+            expect.stringContaining('setPlayerCmd%3Aequalizer%3A11')
         );
     });
 });

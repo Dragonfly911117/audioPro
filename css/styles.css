@@ -401,6 +401,49 @@ header h1 {
 }
 
 /* =============================================================================
+   Equalizer
+   ============================================================================= */
+
+.eq-section {
+    display: flex;
+    justify-content: center;
+}
+
+.eq-select {
+    width: 100%;
+    padding: 12px 16px;
+    background: transparent;
+    border: 1px solid var(--yorha-border);
+    color: var(--yorha-text);
+    font-family: var(--font-main);
+    font-size: 0.85rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all var(--transition);
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23454138' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+}
+
+.eq-select:hover {
+    background-color: rgba(69, 65, 56, 0.1);
+}
+
+.eq-select:focus {
+    outline: none;
+    border-color: var(--yorha-text);
+}
+
+.eq-select option {
+    background: var(--yorha-bg-light);
+    color: var(--yorha-text);
+    padding: 8px;
+}
+
+/* =============================================================================
    Presets
    ============================================================================= */
 

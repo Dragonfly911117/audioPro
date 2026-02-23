@@ -27,6 +27,7 @@ export interface AppState {
     volume: number;
     muted: boolean;
     playing: boolean;
+    eq: string;
     statusInterval: ReturnType<typeof setInterval> | null;
 }
 

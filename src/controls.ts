@@ -2,7 +2,7 @@
  * Control functions for Audio Pro C20
  */
 
-import { CONFIG, MODE_MAP } from './config.js';
+import { CONFIG, MODE_MAP, EQ_PRESETS } from './config.js';
 import { state } from './state.js';
 import {
     sendPlayerCommand,
@@ -11,7 +11,8 @@ import {
     switchSource,
     triggerPreset,
     reboot,
-    getPlayerStatus
+    getPlayerStatus,
+    setEqualizer
 } from './api.js';
 import {
     showToast,
@@ -23,6 +24,7 @@ import {
     updateTrackInfo,
     updateSourceDisplay,
     updateSourceButtons,
+    updateEqSelect,
     getVolumeSlider
 } from './ui.js';
 import { decodeHex } from './utils.js';
@@ -109,6 +111,22 @@ export async function playPreset(num: number): Promise<void> {
 }
 
 // =============================================================================
+// Equalizer
+// =============================================================================
+
+export async function setEq(preset: number | string): Promise<void> {
+    const presetNum = typeof preset === 'string' ? parseInt(preset, 10) : preset;
+    state.eq = String(presetNum);
+    try {
+        await setEqualizer(presetNum);
+        const presetName = EQ_PRESETS[state.eq] || state.eq;
+        showToast(`EQ: ${presetName}`);
+    } catch {
+        // Error already shown
+    }
+}
+
+// =============================================================================
 // Device Actions
 // =============================================================================
 
@@ -171,5 +189,11 @@ function processPlayerStatus(status: PlayerStatus): void {
         const source = MODE_MAP[status.mode] || status.mode;
         updateSourceDisplay(source);
         updateSourceButtons(source);
+    }
+
+    // Update EQ
+    if (status.eq !== undefined) {
+        state.eq = status.eq;
+        updateEqSelect(state.eq);
     }
 }

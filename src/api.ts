@@ -53,3 +53,11 @@ export async function triggerPreset(num: number): Promise<string> {
 export async function reboot(): Promise<string> {
     return apiCall('reboot');
 }
+
+export async function getEqualizer(): Promise<string> {
+    return apiCall('getEqualizer');
+}
+
+export async function setEqualizer(preset: number): Promise<string> {
+    return apiCall(`setPlayerCmd:equalizer:${preset}`);
+}

@@ -53,6 +53,10 @@ export function getToast(): HTMLElement | null {
     return getElement('toast');
 }
 
+export function getEqSelect(): HTMLSelectElement | null {
+    return getElement<HTMLSelectElement>('eqSelect');
+}
+
 // =============================================================================
 // UI Update Functions
 // =============================================================================
@@ -121,6 +125,13 @@ export function updateVolumeSlider(volume: number): void {
     const slider = getVolumeSlider();
     if (slider) {
         slider.value = String(volume);
+    }
+}
+
+export function updateEqSelect(preset: string): void {
+    const select = getEqSelect();
+    if (select) {
+        select.value = preset;
     }
 }
 

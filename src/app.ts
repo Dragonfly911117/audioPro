@@ -10,6 +10,7 @@ import {
     adjustVolume,
     toggleMute,
     setSource,
+    setEq,
     playPreset,
     rebootDevice,
     refreshStatus
@@ -28,6 +29,7 @@ declare global {
         updateVolumeDisplay: typeof updateVolumeDisplay;
         toggleMute: typeof toggleMute;
         setSource: typeof setSource;
+        setEq: typeof setEq;
         playPreset: typeof playPreset;
         rebootDevice: typeof rebootDevice;
         refreshStatus: typeof refreshStatus;
@@ -40,6 +42,7 @@ window.adjustVolume = adjustVolume;
 window.updateVolumeDisplay = updateVolumeDisplay;
 window.toggleMute = toggleMute;
 window.setSource = setSource;
+window.setEq = setEq;
 window.playPreset = playPreset;
 window.rebootDevice = rebootDevice;
 window.refreshStatus = refreshStatus;

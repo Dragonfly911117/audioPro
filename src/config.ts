@@ -25,6 +25,34 @@ export const MODE_MAP: Record<string, string> = {
     '99': 'PCUSB'
 };
 
+export const EQ_PRESETS: Record<string, string> = {
+    '0': 'Off',
+    '1': 'Flat',
+    '2': 'Acoustic',
+    '3': 'Bass Booster',
+    '4': 'Bass Reducer',
+    '5': 'Classical',
+    '6': 'Dance',
+    '7': 'Deep',
+    '8': 'Electronic',
+    '9': 'Game',
+    '10': 'Hip-Hop',
+    '11': 'Jazz',
+    '12': 'Latin',
+    '13': 'Loudness',
+    '14': 'Lounge',
+    '15': 'Movie',
+    '16': 'Piano',
+    '17': 'Pop',
+    '18': 'R&B',
+    '19': 'Rock',
+    '20': 'Small Speakers',
+    '21': 'Spoken Word',
+    '22': 'Treble Booster',
+    '23': 'Treble Reducer',
+    '24': 'Vocal Booster'
+};
+
 export interface SpeakerConfig {
     name: string;
     ip: string;

@@ -7,6 +7,7 @@ describe('state', () => {
         state.volume = 50;
         state.muted = false;
         state.playing = false;
+        state.eq = '0';
         state.statusInterval = null;
     });
 
@@ -24,6 +25,10 @@ describe('state', () => {
 
     it('should have default statusInterval of null', () => {
         expect(state.statusInterval).toBeNull();
+    });
+
+    it('should have default eq of 0 (Off)', () => {
+        expect(state.eq).toBe('0');
     });
 
     it('should allow volume to be updated', () => {
@@ -46,6 +51,11 @@ describe('state', () => {
         state.statusInterval = interval;
         expect(state.statusInterval).toBe(interval);
         clearInterval(interval);
+    });
+
+    it('should allow eq preset to be updated', () => {
+        state.eq = '11';
+        expect(state.eq).toBe('11');
     });
 
     it('should accept volume values from 0 to 100', () => {
