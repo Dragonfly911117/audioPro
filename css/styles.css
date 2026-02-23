@@ -1,0 +1,531 @@
+/**
+ * YoRHA UI Theme - Audio Pro C20 Controller
+ * Based on NieR: Automata's interface design language
+ */
+
+/* =============================================================================
+   CSS Variables
+   ============================================================================= */
+
+:root {
+    --yorha-bg: #d1cdb7;
+    --yorha-bg-light: #dcd8c0;
+    --yorha-bg-dark: #c4c0ab;
+    --yorha-text: #454138;
+    --yorha-text-light: #5c5848;
+    --yorha-accent: #bab5a1;
+    --yorha-grid: #ccc8b1;
+    --yorha-border: #454138;
+    --yorha-hover: #454138;
+    --yorha-active: #3a372d;
+    --yorha-shadow: rgba(69, 65, 56, 0.3);
+
+    --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --letter-spacing: 0.05em;
+    --transition: 0.15s ease;
+}
+
+/* =============================================================================
+   Reset & Base
+   ============================================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-main);
+    font-weight: 300;
+    letter-spacing: var(--letter-spacing);
+    background-color: var(--yorha-bg);
+    background-image:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 0.3rem,
+            var(--yorha-grid) 0.3rem,
+            var(--yorha-grid) 0.35rem
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 0.3rem,
+            var(--yorha-grid) 0.3rem,
+            var(--yorha-grid) 0.35rem
+        );
+    min-height: 100vh;
+    color: var(--yorha-text);
+    padding: 20px;
+}
+
+/* =============================================================================
+   Layout
+   ============================================================================= */
+
+.container {
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+/* =============================================================================
+   Header
+   ============================================================================= */
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px 0;
+    border-bottom: 2px solid var(--yorha-border);
+}
+
+header h1 {
+    font-size: 1.6rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.4em;
+    margin-bottom: 10px;
+    text-shadow: 0.1rem 0.1rem 0 var(--yorha-accent);
+}
+
+/* =============================================================================
+   Status Indicator
+   ============================================================================= */
+
+.status-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--yorha-text-light);
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--yorha-text);
+    position: relative;
+}
+
+.status-dot::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    border: 1px solid var(--yorha-text);
+}
+
+.status-dot.connected {
+    background: #5a7a5a;
+}
+
+.status-dot.connected::before {
+    border-color: #5a7a5a;
+}
+
+/* =============================================================================
+   Card Component
+   ============================================================================= */
+
+.card {
+    background: var(--yorha-bg-light);
+    border: 1px solid var(--yorha-border);
+    padding: 20px;
+    margin-bottom: 16px;
+    position: relative;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border: 1px solid var(--yorha-accent);
+    pointer-events: none;
+}
+
+.card-title {
+    font-size: 0.7rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--yorha-text);
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--yorha-accent);
+}
+
+/* =============================================================================
+   Now Playing
+   ============================================================================= */
+
+.now-playing {
+    text-align: center;
+    padding: 10px 0;
+}
+
+.now-playing .title {
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    margin-bottom: 5px;
+    word-break: break-word;
+    text-transform: uppercase;
+}
+
+.now-playing .artist {
+    color: var(--yorha-text-light);
+    font-size: 0.85rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+}
+
+.now-playing .source {
+    margin-top: 12px;
+    font-size: 0.65rem;
+    color: var(--yorha-text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    padding: 4px 12px;
+    border: 1px solid var(--yorha-accent);
+    display: inline-block;
+}
+
+/* =============================================================================
+   Playback Controls
+   ============================================================================= */
+
+.playback-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.control-btn {
+    background: transparent;
+    border: 1px solid var(--yorha-border);
+    width: 48px;
+    height: 48px;
+    color: var(--yorha-text);
+    cursor: pointer;
+    transition: all var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    position: relative;
+}
+
+.control-btn::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    border: 1px solid var(--yorha-accent);
+    opacity: 0;
+    transition: opacity var(--transition);
+}
+
+.control-btn:hover {
+    background: var(--yorha-hover);
+    color: var(--yorha-bg-light);
+}
+
+.control-btn:hover::before {
+    opacity: 1;
+}
+
+.control-btn:active {
+    background: var(--yorha-active);
+}
+
+.control-btn.play-pause {
+    width: 64px;
+    height: 64px;
+    font-size: 1.3rem;
+    border-width: 2px;
+}
+
+/* =============================================================================
+   Volume Controls
+   ============================================================================= */
+
+.volume-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.volume-btn {
+    background: transparent;
+    border: 1px solid var(--yorha-border);
+    width: 36px;
+    height: 36px;
+    color: var(--yorha-text);
+    cursor: pointer;
+    transition: all var(--transition);
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+.volume-btn:hover {
+    background: var(--yorha-hover);
+    color: var(--yorha-bg-light);
+}
+
+.volume-slider-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.volume-slider {
+    flex: 1;
+    -webkit-appearance: none;
+    height: 2px;
+    background: var(--yorha-border);
+    outline: none;
+    cursor: pointer;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    background: var(--yorha-bg-light);
+    border: 2px solid var(--yorha-border);
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.volume-slider::-webkit-slider-thumb:hover {
+    background: var(--yorha-hover);
+    border-color: var(--yorha-hover);
+}
+
+.volume-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: var(--yorha-bg-light);
+    border: 2px solid var(--yorha-border);
+    cursor: pointer;
+}
+
+.volume-value {
+    min-width: 50px;
+    text-align: right;
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    font-family: 'Courier New', monospace;
+}
+
+.mute-btn {
+    background: transparent;
+    border: 1px solid var(--yorha-border);
+    width: 36px;
+    height: 36px;
+    color: var(--yorha-text);
+    cursor: pointer;
+    transition: all var(--transition);
+    font-size: 1rem;
+}
+
+.mute-btn:hover {
+    background: var(--yorha-hover);
+    color: var(--yorha-bg-light);
+}
+
+.mute-btn.muted {
+    background: var(--yorha-text);
+    color: var(--yorha-bg-light);
+}
+
+/* =============================================================================
+   Source Selection
+   ============================================================================= */
+
+.source-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.source-btn {
+    background: transparent;
+    border: 1px solid var(--yorha-border);
+    padding: 12px 8px;
+    color: var(--yorha-text);
+    cursor: pointer;
+    transition: all var(--transition);
+    text-align: center;
+}
+
+.source-btn:hover {
+    background: var(--yorha-hover);
+    color: var(--yorha-bg-light);
+}
+
+.source-btn.active {
+    background: var(--yorha-text);
+    color: var(--yorha-bg-light);
+}
+
+.source-btn .icon {
+    font-size: 1.3rem;
+    margin-bottom: 4px;
+    filter: grayscale(100%);
+}
+
+.source-btn:hover .icon,
+.source-btn.active .icon {
+    filter: grayscale(0%);
+}
+
+.source-btn .label {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 400;
+}
+
+/* =============================================================================
+   Presets
+   ============================================================================= */
+
+.preset-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+}
+
+.preset-btn {
+    background: transparent;
+    border: 1px solid var(--yorha-border);
+    padding: 10px;
+    color: var(--yorha-text);
+    cursor: pointer;
+    transition: all var(--transition);
+    font-size: 0.85rem;
+    font-family: 'Courier New', monospace;
+    font-weight: 400;
+}
+
+.preset-btn:hover {
+    background: var(--yorha-hover);
+    color: var(--yorha-bg-light);
+}
+
+/* =============================================================================
+   Actions
+   ============================================================================= */
+
+.action-row {
+    display: flex;
+    gap: 8px;
+}
+
+.action-btn {
+    flex: 1;
+    background: transparent;
+    border: 1px solid var(--yorha-border);
+    padding: 12px;
+    color: var(--yorha-text);
+    cursor: pointer;
+    transition: all var(--transition);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 400;
+}
+
+.action-btn:hover {
+    background: var(--yorha-hover);
+    color: var(--yorha-bg-light);
+}
+
+/* =============================================================================
+   Toast Notifications
+   ============================================================================= */
+
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--yorha-text);
+    color: var(--yorha-bg-light);
+    padding: 12px 28px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+    border: 1px solid var(--yorha-text);
+}
+
+.toast::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border: 1px solid var(--yorha-accent);
+}
+
+.toast.show {
+    opacity: 1;
+}
+
+.toast.error {
+    background: #6a4a4a;
+    border-color: #6a4a4a;
+}
+
+/* =============================================================================
+   YoRHA Decorative Elements
+   ============================================================================= */
+
+/* Corner brackets on cards */
+.card::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 12px;
+    height: 12px;
+    border-top: 1px solid var(--yorha-text);
+    border-right: 1px solid var(--yorha-text);
+}
+
+/* Scanline effect (subtle) */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.015) 2px,
+        rgba(0, 0, 0, 0.015) 4px
+    );
+    pointer-events: none;
+    z-index: 9999;
+}
