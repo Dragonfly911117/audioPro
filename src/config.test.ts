@@ -42,32 +42,40 @@ describe('MODE_MAP', () => {
         expect(MODE_MAP['10']).toBe('wifi');
     });
 
-    it('should map mode 31 to bluetooth', () => {
-        expect(MODE_MAP['31']).toBe('bluetooth');
+    it('should map mode 31 to spotify', () => {
+        expect(MODE_MAP['31']).toBe('spotify');
     });
 
     it('should map mode 40 to line-in', () => {
         expect(MODE_MAP['40']).toBe('line-in');
     });
 
-    it('should map mode 41 to line-in', () => {
-        expect(MODE_MAP['41']).toBe('line-in');
+    it('should map mode 41 to bluetooth', () => {
+        expect(MODE_MAP['41']).toBe('bluetooth');
     });
 
     it('should map mode 43 to optical', () => {
         expect(MODE_MAP['43']).toBe('optical');
     });
 
-    it('should map mode 11 to udisk', () => {
-        expect(MODE_MAP['11']).toBe('udisk');
+    it('should map mode 11 to usb', () => {
+        expect(MODE_MAP['11']).toBe('usb');
     });
 
-    it('should map mode 99 to PCUSB', () => {
-        expect(MODE_MAP['99']).toBe('PCUSB');
+    it('should map mode 99 to slave', () => {
+        expect(MODE_MAP['99']).toBe('slave');
+    });
+
+    it('should map mode 1 to airplay', () => {
+        expect(MODE_MAP['1']).toBe('airplay');
+    });
+
+    it('should map mode 2 to dlna', () => {
+        expect(MODE_MAP['2']).toBe('dlna');
     });
 
     it('should have all expected modes', () => {
-        const expectedModes = ['10', '31', '40', '41', '43', '11', '99'];
+        const expectedModes = ['0', '1', '2', '10', '11', '20', '31', '40', '41', '43', '99'];
         expect(Object.keys(MODE_MAP)).toEqual(expect.arrayContaining(expectedModes));
     });
 });

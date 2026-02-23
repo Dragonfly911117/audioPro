@@ -39,7 +39,7 @@ export interface AppConfig {
     sourceDelay: number;
 }
 
-export type SourceMode = 'wifi' | 'bluetooth' | 'line-in' | 'optical' | 'udisk' | 'PCUSB';
+export type SourceMode = 'idle' | 'airplay' | 'dlna' | 'wifi' | 'usb' | 'http' | 'spotify' | 'line-in' | 'bluetooth' | 'optical' | 'slave';
 
 export type PlaybackCommand = 'play' | 'pause' | 'stop' | 'prev' | 'next' | 'onepause' | 'resume';
 

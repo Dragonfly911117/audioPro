@@ -16,13 +16,17 @@ export const CONFIG: AppConfig = {
 export const API_BASE = '/api';
 
 export const MODE_MAP: Record<string, string> = {
+    '0': 'idle',
+    '1': 'airplay',
+    '2': 'dlna',
     '10': 'wifi',
-    '31': 'bluetooth',
+    '11': 'usb',
+    '20': 'http',
+    '31': 'spotify',
     '40': 'line-in',
-    '41': 'line-in',
+    '41': 'bluetooth',
     '43': 'optical',
-    '11': 'udisk',
-    '99': 'PCUSB'
+    '99': 'slave'
 };
 
 export const EQ_PRESETS: Record<string, string> = {
