@@ -1,6 +1,6 @@
 # Audio Pro Controller
-
-> **Note:** This is an AI slop project, generated entirely by Claude.
+> [!CAUTION]
+> This is an AI slop project, generated entirely by Claude. I've only tested with Audio Pro C20 speaker.
 
 Web controller for Audio Pro C20 (and other LinkPlay-based speakers) with a NieR: Automata inspired UI.
 
