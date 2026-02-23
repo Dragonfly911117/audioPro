@@ -49,3 +49,9 @@ Web controller for Audio Pro C20 (and other LinkPlay-based speakers) with a NieR
 - Vitest (73 tests)
 - YoRHA UI theme
 - Node.js proxy server (handles CORS)
+
+## Special Thanks
+
+- [metakirby5/yorha](https://github.com/metakirby5/yorha) - YoRHA CSS design system
+- [Arylic HTTP API Documentation](https://developer.arylic.com/httpapi/) - LinkPlay API reference
+- [AndersFluur/LinkPlayApi](https://github.com/AndersFluur/LinkPlayApi) - LinkPlay API documentation
